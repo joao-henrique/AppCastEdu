@@ -11,7 +11,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160420185941) do
+ActiveRecord::Schema.define(version: 20160505013436) do
+
+  create_table "categories", force: :cascade do |t|
+    t.string   "tittle"
+    t.text     "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "logins", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "rooms", force: :cascade do |t|
+    t.string   "tittle"
+    t.text     "description"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "categories_id"
+  end
+
+  add_index "rooms", ["categories_id"], name: "index_rooms_on_categories_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
@@ -23,6 +45,8 @@ ActiveRecord::Schema.define(version: 20160420185941) do
     t.string   "idRedeSocial"
     t.string   "password_reset_key"
     t.datetime "password_reset_sent_at"
+    t.integer  "age"
+    t.string   "sex"
   end
 
 end

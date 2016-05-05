@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+
+<div class="row">
+    <div class="col s12 m12">
+      <div class="card blue-grey darken-1">
+        <div class="card-content white-text">
+          <span class="card-title">Salas de Compartilhamento</span>
+
+
+          <table>
+            <thead>
+              <tr>
+                <th>Tittle</th>
+                <th>Descrition</th>
+                <th colspan="3"></th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <% @rooms.each do |room| %>
+                <tr>
+                  <td><%= room.tittle %></td>
+                  <td><%= room.description %></td>
+                  <td><%= link_to 'Show', room %></td>
+                  <td><%= link_to 'Edit', edit_room_path(room) %></td>
+                  <td><%= link_to 'Destroy', room, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+
+
+          <%= link_to 'Criar uma nova Sala', new_room_path ,:class=>"waves-effect waves-light btn-large"%>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,46 @@
+<div class="row">
+    <div class="col s12 m6">
+      <div class="card blue-grey darken-1">
+        <div class="card-content white-text">
+          <span class="card-title">Registrar Uma nova Sala</span>
+
+
+          <%= form_for(@room) do |f| %>
+
+          <div class="row">
+            <div class="input-field col s12">
+              <%= f.text_field :tittle, :class => 'validate',:type=>"text" %>
+              <label for="text">Titulo</label>
+            </div>
+          </div>
+
+
+
+            <div class="row">
+              <div class="input-field col s12">
+                <%= f.text_area :description, :class => 'validate materialize-textarea',:type=>"text" %>
+                  <label for="textarea1">Descrição</label>
+              </div>
+            </div>
+
+            <div class="actions">
+              <%= f.submit "Registrar", :class=>"waves-effect waves-light btn-large" %>
+            </div>
+
+            <div class="input-field col s6">
+
+                <label>Genero</label>
+              </div>
+            </div>
+
+
+      
+
+          <% end %>
+
+
+
+        </div>
+      </div>
+    </div>
+  </div>

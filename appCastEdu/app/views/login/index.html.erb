@@ -1,0 +1,39 @@
+
+<div class="row ">
+     <div class="col s12 m4 l8 centerAlign ">
+       <div class="card-panel">
+
+
+
+    <%= form_for :user ,as: :post,  url: login_makeLogin_url do |f|  %>
+
+         <div class="row">
+
+
+           <div class="input-field col s12">
+             <%= f.text_field :email, :class => 'validate',:type=>"email"%>
+          <label for="email">Email</label>
+
+
+           </div>
+         </div>
+
+      <div class="row">
+        <div class="input-field col s12">
+            <%= f.text_field :password, :class => 'validate',:type=>"password"%>
+          <label for="password">Password</label>
+        </div>
+      </div>
+
+      <a class="waves-effect waves-light btn-large"><i class="material-icons left"></i>Voltar</a>
+      <a class="waves-effect waves-light btn-large"><i class="material-icons right"></i>Logar</a>
+
+      <%= f.submit "Create", :class=>"waves-effect waves-light btn-large" %>
+
+
+<% end %>
+
+
+    </div>
+  </div>
+ </div>

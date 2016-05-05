@@ -3,11 +3,7 @@ class User < ActiveRecord::Base
   has_secure_password
   has_secure_token
 
-  validates :idRedeSocial,
-            :on => :create,
-            presence: false,
-            uniqueness: true
-
+  
   validates :email,
             :on => :create,
             presence: true,

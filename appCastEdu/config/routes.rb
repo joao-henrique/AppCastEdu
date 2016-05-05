@@ -1,9 +1,21 @@
 Rails.application.routes.draw do
+  resources :forums
+  resources :comments
+  resources :categories
+  resources :rooms
+  resources :users
+
+  get 'login/' => 'login#index'
+  post 'login/' => 'login#index'
+
+  get 'users/new' => 'users#new'
+
+  get 'login/makeLogin'
+  post 'login/makeLogin'
+
   get 'users/show' => 'users#show'
   post 'users/create' => 'users#create'
 
-  post 'users/create/twitter' => 'users#createtwitter'
-  get 'users/login/twitter/:idRedeSocial'  => 'users#logintwitter', :constraints => { :email => /[^\/]+/ }
 
 
   get  'users/login/:email'  => 'users#login', :constraints => { :email => /[^\/]+/ }

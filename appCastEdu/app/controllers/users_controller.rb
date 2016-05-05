@@ -2,76 +2,27 @@ class UsersController < ApplicationController
 
 skip_before_filter :verify_authenticity_token, :only => [:update]
 
+
+    def new
+      @usera = User.all
+    end
+
     def create
       if (User.create(user_params).valid?)
-          User.create(user_params)
+
+          @user = User.create(user_params)
           puts "if"
-        render json: @users
+          respond_to do |format|
+            format.html { room_path @user, notice: 'Room was successfully created.' }
+            formart.json {render json: @user}
+          end
+
       elsif
-          User.find_by(email: user_params.email)
+          User.find_by_email(params[:email])
           puts "Elseif"
           render json: @users
         end
     end
-
-    def login
-      user = User.find_by_email(params[:email])
-      if !user.blank?
-        if user && user.authenticate(params[:password])
-          session[:user_token] = user.token
-          render json: User.find_by(token: session[:user_token])
-        end
-      else
-        user = User.create(user_params)
-        ##User.login(user)
-      end
-    end
-
-
-        def createtwitter
-          puts "Ola"
-          if (User.create(user_params).valid?)
-              User.create(user_params)
-              puts "if"
-            render json: @users
-          elsif
-              puts "Elseif"
-              render json: @users
-            end
-        end
-
-
-
-        def logintwitter
-
-          puts "Console"
-          user = User.find_by_idRedeSocial(params[:idRedeSocial])
-          if (!user.blank? )
-            if user && user.authenticate(params[:idRedeSocial])
-              puts "Entrou no login "
-              session[:user_token] = user.token
-              render json: User.find_by(idRedeSocial: user.idRedeSocial)
-            end
-          else
-            puts "Cadastrou"
-            @user = User.create(user_params)
-            User.logintwitter(@user)
-            render json: @user
-          end
-        end
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     def show
@@ -86,7 +37,7 @@ skip_before_filter :verify_authenticity_token, :only => [:update]
 
     private
      def user_params
-       params.require(:user).permit(:name , :email, :idRedeSocial, :password, :password_confirmation)
+       params.require(:user).permit(:name , :email, :password, :password_confirmation , :sex)
      end
 
     private
