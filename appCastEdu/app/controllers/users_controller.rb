@@ -3,9 +3,29 @@ class UsersController < ApplicationController
 skip_before_filter :verify_authenticity_token, :only => [:update]
 
 
+  def shop
+      puts params[:id]
+      render json: User.find(params[:id]);
+  end
+
     def new
       @usera = User.all
     end
+
+
+
+
+    def register
+
+
+      user = User.new
+      user = User.new(user_params)
+      puts user
+
+      user.register_strategy "email", user
+       redirect_to login_path
+end
+
 
     def create
       if (User.create(user_params).valid?)
@@ -14,9 +34,8 @@ skip_before_filter :verify_authenticity_token, :only => [:update]
           puts "if"
           respond_to do |format|
             format.html { room_path @user, notice: 'Room was successfully created.' }
-            formart.json {render json: @user}
+            format.json {render json: @user}
           end
-
       elsif
           User.find_by_email(params[:email])
           puts "Elseif"
@@ -26,14 +45,9 @@ skip_before_filter :verify_authenticity_token, :only => [:update]
 
 
     def show
-      @users = User.all
-      render json: @users
+      user = User.find user_params[:id]
     end
 
-    def ranking
-      @users = User.order(score: 'desc')
-      render json: @users
-    end
 
     private
      def user_params
@@ -46,8 +60,8 @@ skip_before_filter :verify_authenticity_token, :only => [:update]
     end
 
     private
-    def score_params
-      params.require(:user).permit(:score)
+    def pefil_params
+      params.require(:user).permit(:id)
     end
 
 end

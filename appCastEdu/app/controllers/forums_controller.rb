@@ -14,7 +14,8 @@ class ForumsController < ApplicationController
 
   # GET /forums/new
   def new
-    @forum = Forum.new
+    puts params[:room_id]
+    @forum = Forum.new(room_id:params[:room_id] )
   end
 
   # GET /forums/1/edit
@@ -28,7 +29,7 @@ class ForumsController < ApplicationController
 
     respond_to do |format|
       if @forum.save
-        format.html { redirect_to @forum, notice: 'Forum was successfully created.' }
+        format.html {  room_forums_path @forum, notice: 'Forum was successfully created.' }
         format.json { render :show, status: :created, location: @forum }
       else
         format.html { render :new }

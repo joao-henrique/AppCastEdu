@@ -1,20 +1,22 @@
 Rails.application.routes.draw do
-  resources :forums
-  resources :comments
-  resources :categories
-  resources :rooms
-  resources :users
+
+  # match 'auth/:provider/callback', to: 'login#create', via: [:get, :post]
+
+
+  match 'auth/:provider/callback' => 'users#register', as: 'register', via: [:get, :post]
 
   get 'login/' => 'login#index'
-  post 'login/' => 'login#index'
+  post 'users/profile' => 'login#makeLogin'
 
-  get 'users/new' => 'users#new'
+  resources :admins
+  resources :contributors
+  resources :comments
+  resources :categories
+  resources :rooms do
+        resources :forums
+  end
 
-  get 'login/makeLogin'
-  post 'login/makeLogin'
-
-  get 'users/show' => 'users#show'
-  post 'users/create' => 'users#create'
+  resources :users
 
 
 

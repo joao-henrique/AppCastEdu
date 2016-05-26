@@ -13,7 +13,7 @@ $(document).ready(function() {
         <div class="card-content white-text">
           <span class="card-title">Registro de uma novo Usuário</span>
 
-      <%= form_for :user ,as: :post,  url: users_create_path(:user) do |f|  %>
+      <%= form_for :user ,as: :post,  url: register_path('email',:user) do |f|  %>
 
 
           <div class="row">
@@ -50,14 +50,21 @@ $(document).ready(function() {
                   </div>
                 </div>
 
-                <div class="row">
+                <div >
                   <div class="input-field col s6 left-align">
                       <%= f.submit "Registrar",:class=>"waves-effect waves-light btn-large" %>
                   </div>
                 </div>
-
-            </div>
+              </form>
+  <div >
+        <div class="input-field col s6 right-align">
+          <%= button_to "Registro com Facebook", "/auth/facebook", id: "sign_in", :class=>"waves-effect blue darken-4 btn-large"%>
         </div>
+  </div>
+  
+</div>
+</div>
+
 
 
 
@@ -68,5 +75,9 @@ $(document).ready(function() {
 
 
 
-  </form>
+
+
+
+
+
 <% end %>

@@ -10,5 +10,7 @@
   <%= @room.description %>
 </p>
 
+<%=link_to 'Criar um forum', new_room_forum_path(@room) %>
+
 <%= link_to 'Edit', edit_room_path(@room) %> |
 <%= link_to 'Back', rooms_path %>

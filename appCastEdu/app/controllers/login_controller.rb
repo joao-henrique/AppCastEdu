@@ -1,15 +1,31 @@
 class LoginController < ApplicationController
 
+  def create
+    user = User.registerSocial(env["omniauth.auth"])
+    puts "user.id ----------------------------------------------"
+    session[:user_id] = user.id
+    redirect_to perfil_path user.id
+
+
+  end
+
+  def destroy
+      session[:user_id] = nil
+      redirect_to login_path
+  end
+
+
+
   def makeLogin
-    user = User.find_by_email(params[:email])
+    user = User.find_by_email user_params[:email]
+    puts user.name
 
     if !user.blank?
-      if user && user.authenticate(params[:password])
-        session[:user_token] = user.token
-        render json: User.find_by(token: session[:user_token])
-      end
+        puts "Pesquisa"
+        redirect_to perfil_path user.id
     else
-        render template: '/users/show'
+          puts "Pesquisa1"
+          redirect_to login_path
     end
   end
 

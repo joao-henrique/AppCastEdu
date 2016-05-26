@@ -2,8 +2,9 @@ class User < ActiveRecord::Base
   attr_accessible :email, :name, :password, :idRedeSocial
   has_secure_password
   has_secure_token
+  # attr_accessible :abstract_register
+  # attr_accessor :abstract_register
 
-  
   validates :email,
             :on => :create,
             presence: true,
@@ -12,9 +13,26 @@ class User < ActiveRecord::Base
               with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
             }
 
-        def to_param
-          email
-        end
+  def register_strategy strategy, user
+    puts 'Register strategy'
+    puts user
+     Register.new("email",user)
+  end
+
+    def register_social(auth)
+          where(auth.slice(:email)).first_or_initialize.tap do |user|
+            user.password = auth.uid
+            user.name = auth.info.name
+            user.email = auth.info.email
+            user.save!
+          end
+          puts "------"
+          return find_by(email: auth.info.email)
+    end
+
+
+
+
 
   # Gerador de chaves
   def generate_key(column)

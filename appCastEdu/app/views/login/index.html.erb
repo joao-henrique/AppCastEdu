@@ -3,18 +3,12 @@
      <div class="col s12 m4 l8 centerAlign ">
        <div class="card-panel">
 
-
-
-    <%= form_for :user ,as: :post,  url: login_makeLogin_url do |f|  %>
+    <%= form_for :user ,as: :post,  url: users_profile_path do |f|  %>
 
          <div class="row">
-
-
            <div class="input-field col s12">
              <%= f.text_field :email, :class => 'validate',:type=>"email"%>
           <label for="email">Email</label>
-
-
            </div>
          </div>
 
@@ -26,12 +20,13 @@
       </div>
 
       <a class="waves-effect waves-light btn-large"><i class="material-icons left"></i>Voltar</a>
-      <a class="waves-effect waves-light btn-large"><i class="material-icons right"></i>Logar</a>
-
-      <%= f.submit "Create", :class=>"waves-effect waves-light btn-large" %>
+      <%= f.submit "Logar", :class=>"waves-effect waves-light btn-large" %>
 
 
 <% end %>
+
+  <%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" %>
+
 
 
     </div>

@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160505013436) do
+ActiveRecord::Schema.define(version: 20160523150650) do
+
+  create_table "abstract_registers", force: :cascade do |t|
+    t.string   "register"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "admins", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "categories", force: :cascade do |t|
     t.string   "tittle"
@@ -20,7 +31,44 @@ ActiveRecord::Schema.define(version: 20160505013436) do
     t.datetime "updated_at",  null: false
   end
 
+  create_table "comments", force: :cascade do |t|
+    t.string   "tittle"
+    t.text     "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "contributors", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "forums", force: :cascade do |t|
+    t.string   "tittle"
+    t.text     "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "room_id"
+  end
+
+  add_index "forums", ["room_id"], name: "index_forums_on_room_id"
+
   create_table "logins", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "register_emails", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "register_facebooks", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "registers", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -31,9 +79,11 @@ ActiveRecord::Schema.define(version: 20160505013436) do
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
     t.integer  "categories_id"
+    t.integer  "forums_id"
   end
 
   add_index "rooms", ["categories_id"], name: "index_rooms_on_categories_id"
+  add_index "rooms", ["forums_id"], name: "index_rooms_on_forums_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "name"

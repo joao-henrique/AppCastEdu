@@ -3,6 +3,16 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   before_filter :add_allow_credentials_headers
 
+
+  
+
+ private
+ def current_user
+   @current_user ||= User.find(session[:user_id]) if session[:user_id]
+ end
+ helper_method :current_user
+
+
 def add_allow_credentials_headers
   # https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS#section_5
   #
