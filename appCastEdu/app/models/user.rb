@@ -2,8 +2,8 @@ class User < ActiveRecord::Base
   attr_accessible :email, :name, :password, :idRedeSocial
   has_secure_password
   has_secure_token
-  # attr_accessible :abstract_register
-  # attr_accessor :abstract_register
+   attr_accessible :register
+   attr_accessor :register
 
   validates :email,
             :on => :create,
@@ -13,11 +13,14 @@ class User < ActiveRecord::Base
               with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
             }
 
-  def register_strategy strategy, user
+  def register_strategy strategy,user
+    puts "+++++++++++++++++"
     puts 'Register strategy'
-    puts user
-     Register.new("email",user)
+    
+    register = Register.new(strategy,user)
   end
+
+
 
     def register_social(auth)
           where(auth.slice(:email)).first_or_initialize.tap do |user|

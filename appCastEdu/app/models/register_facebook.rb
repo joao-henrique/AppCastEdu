@@ -1,14 +1,20 @@
-class RegisterFacebook < AbstractRegister
+class RegisterFacebook < Register
 
-  def register user
-    where(auth.slice(:email)).first_or_initialize.tap do |user|
-      user.password = auth.uid
-      user.name = auth.info.name
-      user.email = auth.info.email
+  def initialize user
+      @user = user
+  end
+
+  def register
+    user = User.new()
+
+  User.where(@user.slice(:email)).first_or_initialize.tap do |user|
+      user.password = @user.uid
+      user.name = @user.info.name
+      user.email = @user.info.email
       user.save!
-    end
+   end
     puts "------"
-    return find_by(email: auth.info.email)
+
   end
 
 

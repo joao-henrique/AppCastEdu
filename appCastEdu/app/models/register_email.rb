@@ -1,20 +1,13 @@
-class RegisterEmail < AbstractRegister
+class RegisterEmail < Register
 
-  def initialize
-    puts 'iniciou'
+  def initialize user
+      @user = user
   end
 
   def register
-    puts 'RegisterEmail'
-    puts "-----------------"
-    user = User.new
-    user.name = "Joa"
-    user.password = "1010"
-
-
-    User.create(user).valid?
-     user = User.find_by_email(user);
-         redirect_to shop_path user
+    @user.save
+    user = User.find_by_email(user);
+    puts "+++++++Finalizando registro com email++++++++++"
   end
 
 end

@@ -6,6 +6,9 @@ $(document).ready(function() {
 
 </script>
 
+<% if flash[:notice] %>
+  <div class="notice"><%= flash[:notice] %></div>
+<% end %>
 
   <div class="row">
     <div class="col s12 m6">
@@ -13,7 +16,7 @@ $(document).ready(function() {
         <div class="card-content white-text">
           <span class="card-title">Registro de uma novo Usuário</span>
 
-      <%= form_for :user ,as: :post,  url: register_path('email',:user) do |f|  %>
+      <%= form_for :user ,as: :post,  url: register_path('email') do |f|  %>
 
 
           <div class="row">
@@ -61,7 +64,7 @@ $(document).ready(function() {
           <%= button_to "Registro com Facebook", "/auth/facebook", id: "sign_in", :class=>"waves-effect blue darken-4 btn-large"%>
         </div>
   </div>
-  
+
 </div>
 </div>
 

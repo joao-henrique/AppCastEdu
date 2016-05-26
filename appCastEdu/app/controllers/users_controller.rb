@@ -4,7 +4,6 @@ skip_before_filter :verify_authenticity_token, :only => [:update]
 
 
   def shop
-      puts params[:id]
       render json: User.find(params[:id]);
   end
 
@@ -13,18 +12,30 @@ skip_before_filter :verify_authenticity_token, :only => [:update]
     end
 
 
+  def register
+      strategy =  params[:provider]
+
+      if strategy == "email"
+        puts "+++++++Iniciando o registro++++++++++"
+        user = User.new(params[:user])
+        user.register_strategy(strategy,user)
+      else
+        puts "+++++++Iniciando o registro Social ++++++++++"
+        user = User.new()
+        user_for_register = env["omniauth.auth"]
+        puts user_for_register
+        user.register_strategy(strategy,user_for_register)
+      end
 
 
-    def register
+      flash.alert = "You must be logged in"
+      flash.notice = "Usuário criado com sucesso Agora vc poderá fazer o login"
+      redirect_to new_user_path
+ end
 
 
-      user = User.new
-      user = User.new(user_params)
-      puts user
 
-      user.register_strategy "email", user
-       redirect_to login_path
-end
+
 
 
     def create
@@ -45,13 +56,13 @@ end
 
 
     def show
-      user = User.find user_params[:id]
+    render json: User.all
     end
 
 
     private
      def user_params
-       params.require(:user).permit(:name , :email, :password, :password_confirmation , :sex)
+       params.require(:user).permit(:name, :email, :password, :password_confirmation , :sex)
      end
 
     private

@@ -1,13 +1,19 @@
-class Register
+class Register < ApplicationController
 
-  def initialize type, user
-    puts "Register"
-    puts user
-      if type == "email"
-        register = AbstractRegister.new(RegisterEmail.new);
-        register.register user
-      end
+  def initialize registerType,user
+    if registerType == "email"
+      puts "+++++++Registro com Email++++++++++"
+        @register = RegisterEmail.new(user)
     end
+      if registerType ==  "facebook"
+        @register = RegisterFacebook.new(user)
+      end
+      @register.register
+  end
 
+
+  def register
+    raise NotImplementedError
+  end
 
 end
