@@ -17,13 +17,10 @@ class User < ActiveRecord::Base
     puts "+++++++++++++++++"
     puts 'Register strategy'
     register = Register.new(strategy,user)
+    puts register.registed_user  
     return register.registed_user
 
   end
-
-
-
-
 
 
   # Gerador de chaves

@@ -13,6 +13,13 @@ class RoomsController < ApplicationController
     @room = Room.new
   end
 
+  def create_forum
+        room = Room.new
+        room.create_forum(params[:forum])
+        redirect_to root_path
+  end
+
+
 
   def createRoom
     @room = Room.new(room_params)
@@ -63,4 +70,12 @@ class RoomsController < ApplicationController
     def room_params
       params.require(:room).permit(:tittle, :descrition,:categories_id)
     end
+
+    def forum_params
+      params.require(:forum).permit(:tittle, :descrition)
+    end
+
+
+
+
 end

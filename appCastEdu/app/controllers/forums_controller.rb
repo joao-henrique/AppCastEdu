@@ -14,8 +14,8 @@ class ForumsController < ApplicationController
 
   # GET /forums/new
   def new
-    puts params[:room_id]
-    @forum = Forum.new(room_id:params[:room_id] )
+
+    @forum 
   end
 
   # GET /forums/1/edit

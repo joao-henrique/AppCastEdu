@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160523150650) do
+ActiveRecord::Schema.define(version: 20160527023114) do
 
   create_table "abstract_registers", force: :cascade do |t|
     t.string   "register"

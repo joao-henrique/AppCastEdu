@@ -9,13 +9,8 @@
 Room.create(tittle:" Estudos de EDO",description:"Aqui abordaremos o ")
 Room.create(tittle:" Estudos de EDA",description:"Aqui ")
 Room.create(tittle:" OO",description:"Aqui abordaremos o ")
+Forum.create(tittle:" OO",description:"Aqui abordaremos o ")
 
 
 Category.create(tittle:" Software",description:"Aqui abordaremos o ")
 Category.create(tittle:" Matematica",description:"Aqui abordaremos o ")
-
-
-Forum.create(tittle:"Forum 1",description:"Forum 1")
-Forum.create(tittle:"Forum 2",description:"Forum 2")
-Forum.create(tittle:"Forum 3",description:"Forum 3",room_id:1)
-Forum.create(tittle:"Forum 4",description:"Forum 4",room_id:1)

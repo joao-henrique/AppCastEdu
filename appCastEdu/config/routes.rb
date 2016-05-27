@@ -5,6 +5,9 @@ Rails.application.routes.draw do
 
   get 'users/perfil/:id' => 'users#perfil', as: 'perfil'
 
+  get 'forum/new' => 'forums#new', as: 'forum'
+  post 'room/forum/create' =>'rooms#create_forum', as: 'create_forum' 
+
 
   match 'auth/:provider/callback' => 'users#register', as: 'register', via: [:get, :post]
 
@@ -15,9 +18,7 @@ Rails.application.routes.draw do
   resources :contributors
   resources :comments
   resources :categories
-  resources :rooms do
-        resources :forums
-  end
+
 
   resources :users
 

@@ -4,6 +4,7 @@ class Register < ApplicationController
     if registerType == "email"
       puts "+++++++Registro com Email++++++++++"
         @register = RegisterEmail.new(user)
+        puts user.email
         @user = User.find_by(email: user.email)
     end
       if registerType ==  "facebook"
@@ -15,6 +16,7 @@ class Register < ApplicationController
   end
 
   def registed_user
+    puts @user
     @user
   end
 

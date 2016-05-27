@@ -1,17 +1,12 @@
+
+
+
+
+
 <%= @room%>
 
-<%= form_for :forum ,as: :post,  url: room_forums_path(:forum) do |f|  %>
-  <% if @forum.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@forum.errors.count, "error") %> prohibited this forum from being saved:</h2>
+<%= form_for :forum ,as: :post,  url: create_forum_path do |f|  %>
 
-      <ul>
-      <% @forum.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
 
   <div class="field">
     <%= f.label :tittle %><br>
