@@ -8,6 +8,7 @@ class RegisterEmail < Register
     @user.save
     user = User.find_by_email(user);
     puts "+++++++Finalizando registro com email++++++++++"
+
   end
 
 end

@@ -6,7 +6,6 @@ class LoginController < ApplicationController
     session[:user_id] = user.id
     redirect_to show_path user.id
 
-
   end
 
   def destroy
@@ -22,7 +21,7 @@ class LoginController < ApplicationController
 
     if !user.blank?
         puts "Pesquisa"
-        redirect_to shop_path user.id
+        redirect_to perfil_path user
     else
           puts "Pesquisa1"
           redirect_to login_path

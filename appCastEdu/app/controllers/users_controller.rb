@@ -3,8 +3,9 @@ class UsersController < ApplicationController
 skip_before_filter :verify_authenticity_token, :only => [:update]
 
 
-  def shop
-      render json: User.find(params[:id]);
+  def perfil
+      @user =  User.find(params[:id]);
+
   end
 
     def new
@@ -18,19 +19,18 @@ skip_before_filter :verify_authenticity_token, :only => [:update]
       if strategy == "email"
         puts "+++++++Iniciando o registro++++++++++"
         user = User.new(params[:user])
-        user.register_strategy(strategy,user)
+        @user = user.register_strategy(strategy,user)
+        redirect_to perfil_path @user
       else
         puts "+++++++Iniciando o registro Social ++++++++++"
         user = User.new()
         user_for_register = env["omniauth.auth"]
-        puts user_for_register
-        user.register_strategy(strategy,user_for_register)
+        @user = user.register_strategy(strategy,user_for_register)
+        redirect_to perfil_path @user
       end
 
 
-      flash.alert = "You must be logged in"
-      flash.notice = "Usuário criado com sucesso Agora vc poderá fazer o login"
-      redirect_to new_user_path
+
  end
 
 

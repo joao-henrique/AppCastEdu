@@ -76,14 +76,9 @@ ActiveRecord::Schema.define(version: 20160523150650) do
   create_table "rooms", force: :cascade do |t|
     t.string   "tittle"
     t.text     "description"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-    t.integer  "categories_id"
-    t.integer  "forums_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
-
-  add_index "rooms", ["categories_id"], name: "index_rooms_on_categories_id"
-  add_index "rooms", ["forums_id"], name: "index_rooms_on_forums_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
