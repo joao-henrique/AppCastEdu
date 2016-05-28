@@ -5,8 +5,8 @@ Rails.application.routes.draw do
 
   get 'users/perfil/:id' => 'users#perfil', as: 'perfil'
 
-  get 'forum/new' => 'forums#new', as: 'forum'
-  post 'room/forum/create' =>'rooms#create_forum', as: 'create_forum' 
+  get 'room/:id/forum/new' => 'forums#new', as: 'forum'
+  post 'room/:id/forum/create' =>'rooms#create_forum', as: 'create_forum'
 
 
   match 'auth/:provider/callback' => 'users#register', as: 'register', via: [:get, :post]

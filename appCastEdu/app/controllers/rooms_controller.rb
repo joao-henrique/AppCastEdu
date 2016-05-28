@@ -14,8 +14,8 @@ class RoomsController < ApplicationController
   end
 
   def create_forum
-        room = Room.new
-        room.create_forum(params[:forum])
+        room = Room.find(params[:id])
+        room.create_forum()
         redirect_to root_path
   end
 

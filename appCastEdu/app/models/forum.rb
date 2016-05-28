@@ -1,18 +1,13 @@
 class Forum < ActiveRecord::Base
 
-    belongs_to :room
+  attr_reader :tittle, :description, :room_id, :erros, :forum
+  belongs_to :room
+  after_initialize :start
 
 
-  def initialize room,new_forum
-      @room = room
-      @forum = new_forum
+
+  def start
+    "Instancia de Forum criada "
   end
-
-  def get_room
-   return  @room
-  end
-
-
-
 
 end

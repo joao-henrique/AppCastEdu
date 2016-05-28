@@ -14,8 +14,7 @@ class ForumsController < ApplicationController
 
   # GET /forums/new
   def new
-
-    @forum 
+    @room = Room.find(params[:id])
   end
 
   # GET /forums/1/edit
