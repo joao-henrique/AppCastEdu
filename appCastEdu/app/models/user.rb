@@ -14,12 +14,8 @@ class User < ActiveRecord::Base
             }
 
   def register_strategy strategy,user
-    puts "+++++++++++++++++"
-    puts 'Register strategy'
     register = Register.new(strategy,user)
-    puts register.registed_user  
     return register.registed_user
-
   end
 
 

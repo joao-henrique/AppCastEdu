@@ -62,9 +62,12 @@ $(document).ready(function() {
                 </div>
               </form>
   <div >
-        <div class="input-field col s6 right-align">
+        <div class="input-field col s6 ">
           <%= button_to "Registro com Facebook", "/auth/facebook", id: "sign_in", :class=>"waves-effect blue darken-4 btn-large"%>
+          <%= button_to "Registrar com Gmail", "/auth/google_oauth2",  :class=>"waves-effect  red darken-2 btn-large"%>
+          <%= button_to "Registrar com Github", "/auth/github",  :class=>"waves-effect grey darken-4 btn-large"%>
         </div>
+
   </div>
 
 </div>

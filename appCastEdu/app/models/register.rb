@@ -1,25 +1,21 @@
-class Register < ApplicationController
+class Register
 
   def initialize registerType,user
     if registerType == "email"
-      puts "+++++++Registro com Email++++++++++"
-        @register = RegisterEmail.new(user)
-        puts user.email
-        @user = User.find_by(email: user.email)
+      @register = RegisterEmail.new(user)
+    else
+        @register = RegisterSocial.new(user)
     end
-      if registerType ==  "facebook"
-        @register = RegisterFacebook.new(user)
-        @user = User.find_by(email: user.info.email)
-      end
-      @register.register
-
+        @register.register
+        @user = @register.registed_user
   end
+
+
+
 
   def registed_user
-    puts @user
     @user
   end
-
 
 
   def register
