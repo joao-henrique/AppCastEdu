@@ -5,6 +5,7 @@ skip_before_filter :verify_authenticity_token, :only => [:update]
 
   def perfil
       @user =  User.find(params[:id]);
+      @rooms = Room.where(user_id: params[:id])
 
   end
 
@@ -29,36 +30,19 @@ skip_before_filter :verify_authenticity_token, :only => [:update]
         user = user.register_strategy(strategy,user_for_register)
         redirect_to perfil_path user
       end
-
-
-
  end
 
 
+ def create_room
+    User.find(params[:id]).create_room
+    redirect_to perfil_path params[:id]
+ end
 
 
-
-
-    def create
-      if (User.create(user_params).valid?)
-
-          @user = User.create(user_params)
-          puts "if"
-          respond_to do |format|
-            format.html { room_path @user, notice: 'Room was successfully created.' }
-            format.json {render json: @user}
-          end
-      elsif
-          User.find_by_email(params[:email])
-          puts "Elseif"
-          render json: @users
-        end
-    end
-
-
-    def show
+  def show
     render json: User.all
-    end
+
+  end
 
 
     private

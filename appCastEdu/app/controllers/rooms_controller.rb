@@ -16,35 +16,9 @@ class RoomsController < ApplicationController
   def create_forum
         room = Room.find(params[:id])
         room.create_forum()
-        redirect_to root_path
+        redirect_to  perfil_path room.user_id
   end
 
-
-
-  def createRoom
-    @room = Room.new(room_params)
-    respond_to do |format|
-      if @room.save
-        format.html { redirect_to @room, notice: 'Room was successfully created.' }
-        format.json { render :show, status: :created, location: @room }
-      else
-        format.html { render :new }
-        format.json { render json: @room.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  def updateRoom
-    respond_to do |format|
-      if @room.update(room_params)
-        format.html { redirect_to @room, notice: 'Room was successfully updated.' }
-        format.json { render :show, status: :ok, location: @room }
-      else
-        format.html { render :edit }
-        format.json { render json: @room.errors, status: :unprocessable_entity }
-      end
-    end
-  end
 
   def listRoom
     @rooms = Room.all

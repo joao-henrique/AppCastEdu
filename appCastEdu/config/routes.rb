@@ -13,6 +13,10 @@ Rails.application.routes.draw do
   get 'login/' => 'login#index'
   post 'users/profile' => 'login#makeLogin'
 
+
+
+  post 'users/perfil/:id/create_room'=> 'users#create_room', as: 'create_room'
+
   resources :admins
   resources :contributors
   resources :comments

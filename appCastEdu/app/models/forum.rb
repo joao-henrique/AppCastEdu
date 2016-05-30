@@ -4,10 +4,8 @@ class Forum < ActiveRecord::Base
   belongs_to :room
   after_initialize :start
 
-
-
   def start
-    "Instancia de Forum criada "
+      puts "Inicializando um Forum"
   end
 
 end
