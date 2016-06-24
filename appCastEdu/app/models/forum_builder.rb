@@ -3,7 +3,6 @@ class ForumBuilder
   attr_reader :tittle, :description, :room
 
   def initialize room
-
       if room.class.to_s != 'Room'
           raise StandardError, "Raising standard error"
         end
@@ -25,9 +24,4 @@ class ForumBuilder
       @description = description
       self
   end
-
-
-
-
-
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160530025313) do
+ActiveRecord::Schema.define(version: 20160530025314) do
 
   create_table "abstract_registers", force: :cascade do |t|
     t.string   "register"
@@ -31,6 +31,14 @@ ActiveRecord::Schema.define(version: 20160530025313) do
     t.datetime "updated_at",  null: false
   end
 
+  create_table "children_containers", id: false, force: :cascade do |t|
+    t.integer "child_id"
+    t.integer "container_id"
+  end
+
+  add_index "children_containers", ["child_id"], name: "index_children_containers_on_child_id"
+  add_index "children_containers", ["container_id", "child_id"], name: "index_children_containers_on_container_id_and_child_id", unique: true
+
   create_table "comments", force: :cascade do |t|
     t.string   "tittle"
     t.text     "content"
@@ -41,6 +49,12 @@ ActiveRecord::Schema.define(version: 20160530025313) do
   create_table "contributors", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "entity_colabs", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "forums", force: :cascade do |t|

@@ -3,34 +3,44 @@ class UsersController < ApplicationController
 skip_before_filter :verify_authenticity_token, :only => [:update]
 
 
-  def perfil
+  def get_perfil
       @user =  User.find(params[:id]);
       @rooms = Room.where(user_id: params[:id])
-
   end
 
     def new
-      @usera = User.all
+      @users = User.all
     end
 
 
   def register
       strategy =  params[:provider]
-
       if strategy == "email"
         user = User.new(params[:user])
         @user = user.register_strategy(strategy,user)
         redirect_to perfil_path @user
       else
-        user = User.new()
-        user_for_register = env["omniauth.auth"]
-        puts user_for_register.info.email
-
-
-        user = user.register_strategy(strategy,user_for_register)
-        redirect_to perfil_path user
+        redirect_to perfil_path  User.new.register_strategy(strategy,get_data_social)
       end
  end
+
+ def get_data_social
+   env["omniauth.auth"]
+ end
+
+
+ def login
+    user = User.find_by_email user_params[:email]
+    puts 'login'
+   if !user.blank?
+       puts "Pesquisa"
+       redirect_to perfil_path user
+   else
+       puts "Pesquisa1"
+       redirect_to login_path
+   end
+ end
+
 
 
  def create_room

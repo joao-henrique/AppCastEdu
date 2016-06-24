@@ -15,15 +15,12 @@ class User < ActiveRecord::Base
             }
 
   def register_strategy strategy,user
-    register = Register.new(strategy,user)
-    return register.registed_user
+      Session.new(strategy,user).session_user
   end
 
   def create_room
     RoomBuilder.new(self).build_room()
   end
-
-
 
 
 end
